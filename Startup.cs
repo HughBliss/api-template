@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Study.VueConnection;
 
 namespace Study
 {
@@ -26,6 +27,7 @@ namespace Study
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,9 @@ namespace Study
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }else
+            {
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
@@ -46,6 +51,17 @@ namespace Study
             {
                 endpoints.MapControllers();
             });
+            app.UseSpaStaticFiles();
+            app.UseSpa(
+                spa =>
+                {
+                    spa.Options.SourcePath = "client-app";
+                    if (env.IsDevelopment())
+                    {
+                        spa.UseVueDevelopmentServer();
+                    }
+                }
+            );
         }
     }
 }
