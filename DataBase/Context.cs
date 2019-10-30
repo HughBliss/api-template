@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Study.Models;
 
 namespace Study.DataBase
 {
@@ -8,5 +9,6 @@ namespace Study.DataBase
             : base(options)
         {
         }
+        public DbSet<Order> Orders { get; set; }
     }
 }
