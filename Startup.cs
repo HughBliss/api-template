@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Study.VueConnection;
+using Study.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace Study
 {
@@ -28,6 +30,7 @@ namespace Study
         {
             services.AddControllers();
             services.AddSpaStaticFiles(options => options.RootPath = "client-app/dist");
+            services.AddDbContext<Context>(options => options.UseInMemoryDatabase("Orders"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +39,8 @@ namespace Study
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }else
+            }
+            else
             {
                 app.UseHsts();
             }
