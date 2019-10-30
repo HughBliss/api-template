@@ -309,8 +309,6 @@ new Vue({
 На этом настройка рабочего окружения выполнена
 можно приступать к разработке.
 
-пробежалить по vue
-
 10. Добавляем библиотеку SqlServer - фреймворк для Баз Данных
 ```
 $ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
