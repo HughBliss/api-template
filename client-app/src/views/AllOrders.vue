@@ -23,7 +23,7 @@ export default {
     orders: []
   }),
   created() {
-    this.$axios.get("https://localhost:5001/api/orders").then(res => {
+    this.$axios.get("/api/orders").then(res => {
       this.orders = res.data;
       console.log(res);
     });
